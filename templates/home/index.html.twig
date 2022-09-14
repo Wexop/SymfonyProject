@@ -21,6 +21,13 @@
 {% block body %}
     <div class="container">
         <h1>Bienvenue sur la gestion des chatons</h1>
+
+        Le dossier photos contient:
+        <ul>
+            {% for d in dossiers %}
+                <li>{{ d.filename }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
 {% endblock %}
