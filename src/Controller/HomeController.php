@@ -22,4 +22,12 @@ class HomeController extends AbstractController
             "dossiers" => $finder
         ]);
     }
+
+    #[Route("/voir/{nomDuDossier}", name: "afficherDossier")]
+    public function afficherDossier($nomDuDossier): Response
+    {
+        return $this->render('home/afficherDossier.html.twig', [
+            "nomDuDossier" => $nomDuDossier
+        ]);
+    }
 }
