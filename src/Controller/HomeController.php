@@ -32,9 +32,12 @@ class HomeController extends AbstractController
         // si le dossier n'existe pas on renvoie une erreur 404
         if (!$fs->exists($chemin)) throw $this->createNotFoundException("Le dossier $nomDuDossier n'existe pas");
 
+        $filesInFolder = new Finder();
+        $filesInFolder->files()->in("../public/photos/" . $nomDuDossier);
 
         return $this->render('home/afficherDossier.html.twig', [
-            "nomDuDossier" => $nomDuDossier
+            "nomDuDossier" => $nomDuDossier,
+            "filesInFolder" => $filesInFolder
         ]);
     }
 }

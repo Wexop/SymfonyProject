@@ -5,6 +5,14 @@
 {% block body %}
     <div class="container">
         <h1>{{ nomDuDossier }}</h1>
+        <div style="display: flex; flex-wrap: wrap; width: 100%; flex-direction: row; gap: 20px">
+            {% for f in filesInFolder %}
+                <div style="width: 20%; height: auto;">
+                    <img style="width: 100%; height: auto;" src="{{ asset("/photos/"~nomDuDossier~"/"~f.fileName) }}"/>
+                    <p style=" height: 50px; font-size: 3vmin; text-align: center">{{ f.fileName }}</p>
+                </div>
+            {% endfor %}
+        </div>
 
     </div>
 
