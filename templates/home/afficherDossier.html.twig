@@ -5,6 +5,9 @@
 {% block body %}
     <div class="container">
         <h1>{{ nomDuDossier }}</h1>
+
+        {{ form(form) }}
+
         <div class="row">
             {% for f in filesInFolder %}
                 {% include "home/_chaton.html.twig" %}
