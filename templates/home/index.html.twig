@@ -9,7 +9,11 @@
         Le dossier photos contient:
         <ul>
             {% for d in dossiers %}
-                <li>{{ d.filename }}</li>
+                <li>
+                    <a class="btn" href="{{ path("afficherDossier", {"nomDuDossier": d.filename}) }}">
+                        {{ d.filename }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     </div>
