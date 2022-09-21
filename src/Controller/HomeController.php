@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +15,14 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+
+        //ajouter un formulaire pour créer un nouveau dossier de chatons
+
+        $form = $this->createFormBuilder() // je récupère un constructeur de formulaire
+        ->add("dossier", TextType::class, ["label" => "Nom du dossier à créer"])
+            ->add("ok", SubmitType::class, ["label" => "Ok !"])
+            ->getForm(); // je récupère le form
+
         //Constituer le modèle à transmettre à la vue
 
         $finder = new Finder();
@@ -20,7 +30,8 @@ class HomeController extends AbstractController
 
         //Je transmets le modèle à la vue
         return $this->render('home/index.html.twig', [
-            "dossiers" => $finder
+            "dossiers" => $finder,
+            "form" => $form->createView()
         ]);
     }
 
